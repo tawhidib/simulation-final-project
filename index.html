@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Single Channel Queue</title>
+		<link rel="stylesheet" href="style.css" />
+		<!--Fonts-->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!--Js-->
+		<script src="https://unpkg.com/read-excel-file@4.1.0/bundle/read-excel-file.min.js"></script>
+		<script lang="javascript" src="xlsx.full.min.js"></script>
+		<script lang="javascript" src="FileSaver.min.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Single Channel Queue</h1>
+			<div class="main-area">
+				<div class="input-section">
+					<div class="iat">
+						<label for="iatInput"
+							>RD for IAT
+							<input
+								id="iatInput"
+								placeholder="Only 0 - 1000 Integer"
+								type="number"
+						/></label>
+					</div>
+					<div class="st">
+						<label for="stInput"
+							>RD for ST
+							<input
+								id="stInput"
+								placeholder="Only 0 - 100 Integer"
+								type="number"
+						/></label>
+					</div>
+					<button class="btn submit">submit</button>
+					<input type="file" id="input" />
+				</div>
+				<div class="distribution">
+					<div class="arrival-time">
+						<table>
+							<tr>
+								<th>Time between Arrival (Minutes)</th>
+								<th>Probability</th>
+								<th>cumulative Probability</th>
+								<th>random-digit assignment</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>001-125</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>126-250</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>251-375</td>
+							</tr>
+
+							<tr>
+								<td>4</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>376-500</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>501-625</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>626-750</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>751-875</td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>0.125</td>
+								<td>0.125</td>
+								<td>876-1000</td>
+							</tr>
+						</table>
+					</div>
+					<div class="service-time">
+						<table>
+							<tr>
+								<th>service time (Minutes)</th>
+								<th>Probability</th>
+								<th>cumulative Probability</th>
+								<th>random-digit assignment</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>0.10</td>
+								<td>0.10</td>
+								<td>01-10</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>0.20</td>
+								<td>0.30</td>
+								<td>11-30</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>0.30</td>
+								<td>0.60</td>
+								<td>31-60</td>
+							</tr>
+
+							<tr>
+								<td>4</td>
+								<td>.25</td>
+								<td>0.85</td>
+								<td>61-85</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>0.10</td>
+								<td>0.95</td>
+								<td>86-95</td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>0.05</td>
+								<td>1.00</td>
+								<td>96-100</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!--------Main Table -->
+
+			<div class="main-table hidden" id="myDIV">
+				<table id="resultTable">
+					<tr>
+						<th>SI no</th>
+						<th>RD for arrival</th>
+						<th>inter arrival time</th>
+						<th>arrival time</th>
+						<th>Rd for service</th>
+						<th>service time</th>
+						<th>service begin</th>
+						<th>service end</th>
+						<th>wait in queue</th>
+						<th>service idel time</th>
+						<th>time spend in system</th>
+					</tr>
+
+					<!---total-->
+					<!---
+        <tr>
+          <td><b>total</b></td>
+          <td>RD for arrival</td>
+          <td>inter arrival time</td>
+          <td>arrival time</td>
+          <td>Rd for service</td>
+          <td>service time</td>
+          <td>service begin</td>
+          <td>service end</td>
+          <td>wait in queue</td>
+          <td>service idel time</td>
+          <td>time spend in system</td>
+        </tr>
+  -->
+				</table>
+				<button class="btn" id="refresh">refresh</button>
+				<button class="btn" id="save">Save as Excel</button>
+			</div>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+</html>
